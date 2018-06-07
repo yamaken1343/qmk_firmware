@@ -1,4 +1,4 @@
-#if 1
+#if 0
 #define HELIX_ROWS 5              // Helix Rows is 4 or 5
 #define OLED_ENABLE yes           // OLED_ENABLE
 #define LOCAL_GLCDFONT no         //use each keymaps "helixfont.h" insted of "common/glcdfont.c"
@@ -9,6 +9,8 @@
 #define RGBLIGHT_ENABLE 0
 #define SSD1306OLED
 #endif
+
+#include <keycode_config.h>
 #include "helix.h"
 #include "bootloader.h"
 #include "action_layer.h"
@@ -66,6 +68,8 @@ enum macro_keycodes {
 // Fillers to make layering more clear
 #define _______ KC_TRNS
 #define XXXXXXX KC_NO
+#define CC_NORM MAGIC_UNSWAP_CONTROL_CAPSLOCK
+#define CC_SWAP MAGIC_SWAP_CONTROL_CAPSLOCK
 //Macros
 #define M_SAMPLE M(KC_SAMPLEMACRO)
 
@@ -165,7 +169,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
    * |      |      |      |Aud on|Audoff| Mac  |             | Win  |Qwerty|      |Dvorak|      |      |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |      |      |      |      |      |      |      |      |      |      |RGB ON| HUE+ | SAT+ | VAL+ |
+   * |      |      |      |      |      |return|      |      | swap |      |RGB ON| HUE+ | SAT+ | VAL+ |
+   * |      |      |      |      |      |caps-ctrl    |      |caps-ctrl    |      |      |      |      |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
    * |      |      |      |      |      |      |      |      |      |      | MODE | HUE- | SAT- | VAL- |
    * `-------------------------------------------------------------------------------------------------'
@@ -174,7 +179,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,                     KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12, \
       _______, RESET,   RGBRST,  _______, _______, _______,                   _______, _______, _______, _______, _______, KC_DEL, \
       _______, _______, _______, AU_ON,   AU_OFF,  AG_NORM,                   AG_SWAP, QWERTY,  _______, DVORAK,  _______, _______, \
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, \
+      _______, _______, _______, _______, _______, CC_NORM, _______, _______, CC_SWAP, _______, RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, \
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RGB_SMOD,RGB_HUD, RGB_SAD, RGB_VAD \
       )
 };
@@ -427,6 +432,11 @@ void render_status(struct CharacterMatrix *matrix) {
     matrix_write(matrix, logo[1][0]);
     matrix_write_P(matrix, PSTR("\n"));
     matrix_write(matrix, logo[1][1]);
+  }
+
+  if(keymap_config.swap_control_capslock==false){
+  }else{
+    matrix_write_P(matrix, PSTR("CAPS <--> CTRL"));
   }
 
   // Define layers here, Have not worked out how to have text displayed for each layer. Copy down the number you see and add a case for it below
