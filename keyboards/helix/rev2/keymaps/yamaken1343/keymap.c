@@ -121,9 +121,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   /* Lower
    * ,-----------------------------------------.             ,-----------------------------------------.
-   * |   ~  |   !  |   @  |   #  |   $  |   %  |             |   ^  |   &  |   *  |   (  |   )  |      |
+   * |   ~  |  F1  |  F2  |  F3  |  F4  |  F5  |             |  F6  |  F7  |  F8  |  F9  |  F10 |  F11 |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |   ~  |   !  |   @  |   #  |   $  |   %  |             |   ^  |   &  |   *  |   (  |   )  |      |
+   * |   ~  |   !  |   @  |   #  |   $  |   %  |             |   ^  |   &  |   *  |   (  |   )  |  F12 |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
    * |      |  F1  |  F2  |  F3  |  F4  |  F5  |             | Bksp | Left |  Up  | Down |Right |  |   |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
@@ -133,8 +133,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * `-------------------------------------------------------------------------------------------------'
    */
   [_LOWER] = KEYMAP( \
-      KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, _______, \
-      KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, _______, \
+      KC_TILD, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                     KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11, \
+      KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_F12, \
       _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                     KC_BSPC, KC_LEFT, KC_UP,   KC_DOWN, KC_RGHT, KC_PIPE, \
       _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_LPRN, KC_RPRN, KC_DEL,  KC_HOME, KC_PGUP, KC_PGDN, KC_END,  _______, \
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY \
@@ -167,7 +167,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
    * |      | Reset|RGBRST|      |      |      |             |      |      |      |      |      |  Del |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |      |      |      |Aud on|Audoff| Mac  |             | Win  |Qwerty|      |Dvorak|      |      |
+   * | CAPS |      |      |Aud on|Audoff| Mac  |             | Win  |Qwerty|      |Dvorak|      |      |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
    * |      |      |      |      |      |return|      |      | swap |      |RGB ON| HUE+ | SAT+ | VAL+ |
    * |      |      |      |      |      |caps-ctrl    |      |caps-ctrl    |      |      |      |      |
@@ -178,7 +178,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_ADJUST] =  KEYMAP( \
       KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,                     KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12, \
       _______, RESET,   RGBRST,  _______, _______, _______,                   _______, _______, _______, _______, _______, KC_DEL, \
-      _______, _______, _______, AU_ON,   AU_OFF,  AG_NORM,                   AG_SWAP, QWERTY,  _______, DVORAK,  _______, _______, \
+      KC_CAPS, _______, _______, AU_ON,   AU_OFF,  AG_NORM,                   AG_SWAP, QWERTY,  _______, DVORAK,  _______, _______, \
       _______, _______, _______, _______, _______, CC_NORM, _______, _______, CC_SWAP, _______, RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, \
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RGB_SMOD,RGB_HUD, RGB_SAD, RGB_VAD \
       )
@@ -201,7 +201,7 @@ float music_scale[][2]     = SONG(MUSIC_SCALE_SOUND);
 // define variables for reactive RGB
 bool TOG_STATUS = false;
 int RGB_current_mode;
-char default_layer_current_mode[8] = "Dvorak";
+int default_layer_current_mode = _DVORAK;
 
 void persistent_default_layer_set(uint16_t default_layer) {
   eeconfig_update_default_layer(default_layer);
@@ -228,7 +228,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           PLAY_SONG(tone_qwerty);
         #endif
         persistent_default_layer_set(1UL<<_QWERTY);
-        strcpy(default_layer_current_mode, "Qwerty");
+        default_layer_current_mode = _QWERTY;
       }
       return false;
       break;
@@ -238,7 +238,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           PLAY_SONG(tone_dvorak);
         #endif
         persistent_default_layer_set(1UL<<_DVORAK);
-        strcpy(default_layer_current_mode,"Dvorak");
+        default_layer_current_mode = _DVORAK;
       }
       return false;
       break;
@@ -436,7 +436,7 @@ void render_status(struct CharacterMatrix *matrix) {
 
   if(keymap_config.swap_control_capslock==false){
   }else{
-    matrix_write_P(matrix, PSTR("CAPS <--> CTRL"));
+    matrix_write_P(matrix, PSTR(" CAPS<-->CTRL"));
   }
 
   // Define layers here, Have not worked out how to have text displayed for each layer. Copy down the number you see and add a case for it below
@@ -446,8 +446,8 @@ void render_status(struct CharacterMatrix *matrix) {
     switch (layer_state) {
         case L_BASE:
            //matrix_write_P(matrix, PSTR("default"));
-           if(strcmp(default_layer_current_mode, "Qwerty") == 0) matrix_write_P(matrix, PSTR("Qwerty"));
-           if(strcmp(default_layer_current_mode, "Dvorak") == 0) matrix_write_P(matrix, PSTR("Dvorak"));
+           if(default_layer_current_mode == _QWERTY) matrix_write_P(matrix, PSTR("Qwerty"));
+           if(default_layer_current_mode == _DVORAK) matrix_write_P(matrix, PSTR("Dvorak"));
            break;
         case L_RAISE:
            matrix_write_P(matrix, PSTR("Raise"));
