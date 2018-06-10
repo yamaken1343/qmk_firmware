@@ -45,8 +45,8 @@ enum layer_number {
     _DVORAK,
     _LOWER,
     _RAISE,
-    _TENKY,
-    _ADJUST
+    _ADJUST,
+    _TENKEY
 };
 
 enum custom_keycodes {
@@ -59,7 +59,7 @@ enum custom_keycodes {
   EISU,
   KANA,
   RGBRST,
-  TENKY
+  TENKEY
 };
 
 enum macro_keycodes {
@@ -97,7 +97,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                      KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC, \
       KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                      KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
       KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_LBRC, KC_RBRC, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT , \
-      ADJUST,  KC_ESC,  EISU, KC_LALT, KC_LGUI,LT(_LOWER,KC_SPC),KC_LSFT, KC_RSFT, LT(_RAISE,KC_ENT),KC_RGUI, KC_RALT, TENKY, DVORAK, ADJUST \
+      ADJUST,  KC_ESC,  EISU, KC_LALT, KC_LGUI,LT(_LOWER,KC_SPC),KC_LSFT, KC_RSFT, LT(_RAISE,KC_ENT),KC_RGUI, KC_RALT, TENKEY, DVORAK, ADJUST \
       ),
 
   /* Dvorak
@@ -119,7 +119,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_TAB,  KC_QUOT, KC_COMM, KC_DOT,  KC_P,    KC_Y,                           KC_F,             KC_G,    KC_C,  KC_R,  KC_L,   KC_SLSH, \
       KC_LCTL, KC_A,    KC_O,    KC_E,    KC_U,    KC_I,                           KC_D,             KC_H,    KC_T,  KC_N,  KC_S,   KC_MINS, \
       KC_LSFT, KC_SCLN, KC_Q,    KC_J,    KC_K,    KC_X,         KC_LBRC, KC_RBRC, KC_B,             KC_M,    KC_W,  KC_V,  KC_Z,   KC_BSLS , \
-      ADJUST,  KC_ESC,  EISU, KC_LALT, KC_LGUI,LT(_LOWER,KC_SPC),KC_LSFT, KC_RSFT, LT(_RAISE,KC_ENT),KC_RGUI, KANA,  TENKY, DVORAK, ADJUST \
+      ADJUST,  KC_ESC,  EISU, KC_LALT, KC_LGUI,LT(_LOWER,KC_SPC),KC_LSFT, KC_RSFT, LT(_RAISE,KC_ENT),KC_RGUI, KANA,  TENKEY, DVORAK, ADJUST \
       ),
 
   /* Lower
@@ -128,9 +128,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
    * |   `  |   1  |   2  |   3  |   4  |   5  |             |   6  |   7  |   8  |   9  |   0  | F12  |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * | CAPS |  F1  |  F2  |  F3  |  F4  |  F5  |             | Bksp | Left |  Up  | Down |Right |  -   |
+   * |      |  F1  |  F2  |  F3  |  F4  |  F5  |             | Bksp | Left |  Up  | Down |Right |  -   |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |PRTSCR|  F7  |  F8  |  F9  |  F10 |  F11 |  (   |   )  | Del  | Home |PageUp|PageDn| End  |      |
+   * |      |  F7  |  F8  |  F9  |  F10 |  F11 |  (   |   )  | Del  | Home |PageUp|PageDn| End  |      |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
    * |      |      |      |      |      |      |      |      |ADJUST| Back | Next | Vol- | Vol+ | Play |
    * `-------------------------------------------------------------------------------------------------'
@@ -138,8 +138,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_LOWER] = KEYMAP( \
       KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                     KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11, \
       KC_GRV,  KC_1 ,   KC_2 ,   KC_3 ,   KC_4 ,   KC_5 ,                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_F12, \
-      KC_CAPS, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                     KC_BSPC, KC_LEFT, KC_UP,   KC_DOWN, KC_RGHT, KC_MINS, \
-      KC_PSCR, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_LPRN, KC_RPRN, KC_DEL,  KC_HOME, KC_PGUP, KC_PGDN, KC_END,  _______, \
+      _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                     KC_BSPC, KC_LEFT, KC_UP,   KC_DOWN, KC_RGHT, KC_MINS, \
+      _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_LPRN, KC_RPRN, KC_DEL,  KC_HOME, KC_PGUP, KC_PGDN, KC_END,  _______, \
       _______, _______, _______, _______, _______, _______, _______, _______, ADJUST, KC_MPRV, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY \
       ),
 
@@ -149,9 +149,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
    * |   ~  |   !  |   @  |   #  |   $  |   %  |             |   ^  |   &  |   *  |   (  |   )  |  F12 |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * | CAPS |  F1  |  F2  |  F3  |  F4  |  F5  |             |  F6  |   -  |   =  |   [  |   ]  |   _  |
+   * |      |  F1  |  F2  |  F3  |  F4  |  F5  |             |  F6  |   -  |   =  |   [  |   ]  |   _  |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |PRTSCR|  F7  |  F8  |  F9  |  F10 |  F11 |      |      |  F12 |   _  |   +  |   {  |   }  |      |
+   * |      |  F7  |  F8  |  F9  |  F10 |  F11 |      |      |  F12 |   _  |   +  |   {  |   }  |      |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
    * |      |      |      |      |      |ADJUST|      |      |      | Back | Next | Vol- | Vol+ | Play |
    * `-------------------------------------------------------------------------------------------------'
@@ -159,8 +159,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_RAISE] = KEYMAP( \
       KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                     KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11, \
       KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_F12, \
-      KC_CAPS, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                     KC_F6,   KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_UNDS, \
-      KC_PSCR, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  _______, _______, KC_F12,  KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, _______, \
+      _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                     KC_F6,   KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_UNDS, \
+      _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  _______, _______, KC_F12,  KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, _______, \
       _______, _______, _______, _______, _______, ADJUST, _______, _______, _______, KC_MPRV, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY \
       ),
 
@@ -172,7 +172,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
    * | CAPS |Insert|      |Aud on|Audoff| Mac  |             | Win  |Qwerty|      |Dvorak|      |      |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |      |      |      |      |      |return|      |      | swap |      |RGB ON| HUE+ | SAT+ | VAL+ |
+   * |PRTSCR|      |      |      |      |return|      |      | swap |      |RGB ON| HUE+ | SAT+ | VAL+ |
    * |      |      |      |      |      |caps-ctrl    |      |caps-ctrl    |      |      |      |      |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
    * |      |      |      |      |      |      |      |      |      |      | MODE | HUE- | SAT- | VAL- |
@@ -182,8 +182,29 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                     KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11, \
       _______, RESET,   RGBRST,  _______, _______, _______,                   _______, _______, _______, _______, _______, KC_F12, \
       KC_CAPS, KC_INS , _______, AU_ON,   AU_OFF,  AG_NORM,                   AG_SWAP, QWERTY,  _______, DVORAK,  _______, _______, \
-      _______, _______, _______, _______, _______, CC_NORM, _______, _______, CC_SWAP, _______, RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, \
+      KC_PSCR, _______, _______, _______, _______, CC_NORM, _______, _______, CC_SWAP, _______, RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, \
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RGB_SMOD,RGB_HUD, RGB_SAD, RGB_VAD \
+      ),
+        
+   /* Ten key pad  0.666
+   * ,-----------------------------------------.             ,-----------------------------------------.
+   * |  ESC |      |      |      |      |      |             |NUMLK | Tab  |   /  |   *  |   =  | Bksp |
+   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
+   * |      |      |  Up  |      |      |      |             |      |   7  |   8  |   9  |   -  | Del  |
+   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
+   * | Ctrl | Left | Down | Right|      |      |             |      |   4  |   5  |   6  |   +  |Enter |
+   * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
+   * |Shift |      |      |      |      |      |      |      |      |   1  |   2  |   3  |   ,  |Shift |
+   * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
+   * |      |      |      |      |      |      |      |  SP  |Enter |   0  |   .  | Enter|DVORAK|ADJUST|
+   * `-------------------------------------------------------------------------------------------------'
+   */
+   [_TENKEY] =  KEYMAP( \
+      KC_ESC,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                    KC_NLCK, KC_TAB,  KC_PSLS, KC_PAST, KC_PEQL, KC_BSPC, \
+      _______, XXXXXXX, KC_UP  , XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, KC_P7,   KC_P8,   KC_P9,   KC_PMNS, KC_DEL, \
+      KC_LCTL, KC_LEFT, KC_DOWN, KC_RGHT, XXXXXXX, XXXXXXX,                   XXXXXXX, KC_P4,   KC_P5,   KC_P6,   KC_PPLS, KC_ENT, \
+      KC_LSFT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, XXXXXXX, KC_P1,   KC_P2,   KC_P3,   KC_PCMM, KC_RSFT, \
+      _______, _______, _______, _______, _______, _______, _______, KC_SPC,  KC_ENT,  KC_P0,   KC_PDOT, KC_PENT, DVORAK,  ADJUST \
       )
 };
 
@@ -224,44 +245,44 @@ void update_tri_layer_RGB(uint8_t layer1, uint8_t layer2, uint8_t layer3) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  switch (keycode) {
+  switch (keycode){
     case QWERTY:
-      if (record->event.pressed) {
-        #ifdef AUDIO_ENABLE
-          PLAY_SONG(tone_qwerty);
-        #endif
-        persistent_default_layer_set(1UL<<_QWERTY);
+      if(record->event.pressed){
+#ifdef AUDIO_ENABLE
+        PLAY_SONG(tone_qwerty);
+#endif
+        persistent_default_layer_set(1UL << _QWERTY);
         default_layer_current_mode = _QWERTY;
       }
       return false;
       break;
     case DVORAK:
-      if (record->event.pressed) {
-        #ifdef AUDIO_ENABLE
-          PLAY_SONG(tone_dvorak);
-        #endif
-        persistent_default_layer_set(1UL<<_DVORAK);
+      if(record->event.pressed){
+#ifdef AUDIO_ENABLE
+        PLAY_SONG(tone_dvorak);
+#endif
+        persistent_default_layer_set(1UL << _DVORAK);
         default_layer_current_mode = _DVORAK;
       }
       return false;
       break;
     case LOWER:
-      if (record->event.pressed) {
-          //not sure how to have keyboard check mode and set it to a variable, so my work around
-          //uses another variable that would be set to true after the first time a reactive key is pressed.
-        if (TOG_STATUS) { //TOG_STATUS checks is another reactive key currently pressed, only changes RGB mode if returns false
-        } else {
+      if(record->event.pressed){
+        //not sure how to have keyboard check mode and set it to a variable, so my work around
+        //uses another variable that would be set to true after the first time a reactive key is pressed.
+        if(TOG_STATUS){ //TOG_STATUS checks is another reactive key currently pressed, only changes RGB mode if returns false
+        }else{
           TOG_STATUS = !TOG_STATUS;
-          #ifdef RGBLIGHT_ENABLE
-            //rgblight_mode(16);
-          #endif
+#ifdef RGBLIGHT_ENABLE
+          //rgblight_mode(16);
+#endif
         }
         layer_on(_LOWER);
         update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
-      } else {
-        #ifdef RGBLIGHT_ENABLE
-          //rgblight_mode(RGB_current_mode);   // revert RGB to initial mode prior to RGB mode change
-        #endif
+      }else{
+#ifdef RGBLIGHT_ENABLE
+        //rgblight_mode(RGB_current_mode);   // revert RGB to initial mode prior to RGB mode change
+#endif
         TOG_STATUS = false;
         layer_off(_LOWER);
         update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
@@ -269,22 +290,22 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return false;
       break;
     case RAISE:
-      if (record->event.pressed) {
+      if(record->event.pressed){
         //not sure how to have keyboard check mode and set it to a variable, so my work around
         //uses another variable that would be set to true after the first time a reactive key is pressed.
-        if (TOG_STATUS) { //TOG_STATUS checks is another reactive key currently pressed, only changes RGB mode if returns false
-        } else {
+        if(TOG_STATUS){ //TOG_STATUS checks is another reactive key currently pressed, only changes RGB mode if returns false
+        }else{
           TOG_STATUS = !TOG_STATUS;
-          #ifdef RGBLIGHT_ENABLE
-            //rgblight_mode(15);
-          #endif
+#ifdef RGBLIGHT_ENABLE
+          //rgblight_mode(15);
+#endif
         }
         layer_on(_RAISE);
         update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
-      } else {
-        #ifdef RGBLIGHT_ENABLE
-          //rgblight_mode(RGB_current_mode);  // revert RGB to initial mode prior to RGB mode change
-        #endif
+      }else{
+#ifdef RGBLIGHT_ENABLE
+        //rgblight_mode(RGB_current_mode);  // revert RGB to initial mode prior to RGB mode change
+#endif
         layer_off(_RAISE);
         TOG_STATUS = false;
         update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
@@ -292,57 +313,64 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return false;
       break;
     case ADJUST:
-        if (record->event.pressed) {
-          layer_on(_ADJUST);
-        } else {
-          layer_off(_ADJUST);
-        }
-        return false;
-        break;
+      if(record->event.pressed){
+        layer_on(_ADJUST);
+      }else{
+        layer_off(_ADJUST);
+      }
+      return false;
+      break;
       //led operations - RGB mode change now updates the RGB_current_mode to allow the right RGB mode to be set after reactive keys are released
     case RGB_MOD:
-      #ifdef RGBLIGHT_ENABLE
-        if (record->event.pressed) {
-          rgblight_mode(RGB_current_mode);
-          rgblight_step();
-          RGB_current_mode = rgblight_config.mode;
-        }
-      #endif
+#ifdef RGBLIGHT_ENABLE
+      if(record->event.pressed){
+        rgblight_mode(RGB_current_mode);
+        rgblight_step();
+        RGB_current_mode = rgblight_config.mode;
+      }
+#endif
       return false;
       break;
     case EISU:
-      if (record->event.pressed) {
-        if(keymap_config.swap_lalt_lgui==false){
+      if(record->event.pressed){
+        if(keymap_config.swap_lalt_lgui == false){
           register_code(KC_LANG2);
         }else{
           SEND_STRING(SS_LALT("`"));
         }
-      } else {
+      }else{
         unregister_code(KC_LANG2);
       }
       return false;
       break;
     case KANA:
-      if (record->event.pressed) {
-        if(keymap_config.swap_lalt_lgui==false){
+      if(record->event.pressed){
+        if(keymap_config.swap_lalt_lgui == false){
           register_code(KC_LANG1);
         }else{
           SEND_STRING(SS_LALT("`"));
         }
-      } else {
+      }else{
         unregister_code(KC_LANG1);
       }
       return false;
       break;
     case RGBRST:
-      #ifdef RGBLIGHT_ENABLE
-        if (record->event.pressed) {
-          eeconfig_update_rgblight_default();
-          rgblight_enable();
-          RGB_current_mode = rgblight_config.mode;
-        }
-      #endif
+#ifdef RGBLIGHT_ENABLE
+      if(record->event.pressed){
+        eeconfig_update_rgblight_default();
+        rgblight_enable();
+        RGB_current_mode = rgblight_config.mode;
+      }
+#endif
       break;
+    case TENKEY:
+      if(record->event.pressed){
+        persistent_default_layer_set(1UL << _TENKEY);
+        default_layer_current_mode = _TENKEY;
+        return false;
+        break;
+      }
   }
   return true;
 }
@@ -409,6 +437,8 @@ void matrix_update(struct CharacterMatrix *dest,
 #define L_RAISE (1<<_RAISE)
 #define L_ADJUST (1<<_ADJUST)
 #define L_ADJUST_TRI (L_ADJUST|L_RAISE|L_LOWER)
+#define L_ADJUST_L (L_ADJUST|L_LOWER)
+#define L_ADJUST_R (L_ADJUST|L_RAISE)
 
 static void render_logo(struct CharacterMatrix *matrix) {
 
@@ -451,6 +481,7 @@ void render_status(struct CharacterMatrix *matrix) {
            //matrix_write_P(matrix, PSTR("default"));
            if(default_layer_current_mode == _QWERTY) matrix_write_P(matrix, PSTR("Qwerty"));
            if(default_layer_current_mode == _DVORAK) matrix_write_P(matrix, PSTR("Dvorak"));
+           if(default_layer_current_mode == _TENKEY) matrix_write_P(matrix, PSTR("Tenkey"));
            break;
         case L_RAISE:
            matrix_write_P(matrix, PSTR("Raise"));
@@ -460,6 +491,8 @@ void render_status(struct CharacterMatrix *matrix) {
            break;
         case L_ADJUST:
         case L_ADJUST_TRI:
+        case L_ADJUST_L:
+        case L_ADJUST_R:
            matrix_write_P(matrix, PSTR("Adjust"));
            break;
         default:
