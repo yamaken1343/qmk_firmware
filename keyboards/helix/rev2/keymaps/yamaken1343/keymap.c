@@ -10,11 +10,9 @@
 #define SSD1306OLED
 #endif
 
+#include QMK_KEYBOARD_H
 #include <keycode_config.h>
-#include "helix.h"
 #include "bootloader.h"
-#include "action_layer.h"
-#include "eeconfig.h"
 #ifdef PROTOCOL_LUFA
 #include "lufa.h"
 #include "split_util.h"
@@ -96,7 +94,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |      |      |      |      |      |Space |Shift |Shift |Enter |      |      |      |      |      |
    * `-------------------------------------------------------------------------------------------------'
    */
-  [_QWERTY] = KEYMAP( \
+  [_QWERTY] = LAYOUT( \
       KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                           KC_6,             KC_7,    KC_8,    KC_9,   KC_0,    KC_DEL, \
       KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                           KC_Y,             KC_U,    KC_I,    KC_O,   KC_P,    KC_BSPC, \
       KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                           KC_H,             KC_J,    KC_K,    KC_L,   KC_SCLN, KC_QUOT, \
@@ -118,7 +116,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |      |      |      |      |      |Space |Shift |Shift |Enter |      |      |      |      |      |
    * `-------------------------------------------------------------------------------------------------'
    */
-  [_DVORAK] = KEYMAP( \
+  [_DVORAK] = LAYOUT( \
       KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                           KC_6,             KC_7,    KC_8,  KC_9,  KC_0,   KC_EQL, \
       KC_TAB,  KC_QUOT, KC_COMM, KC_DOT,  KC_P,    KC_Y,                           KC_F,             KC_G,    KC_C,  KC_R,  KC_L,   KC_SLSH, \
       KC_LCTL, KC_A,    KC_O,    KC_E,    KC_U,    KC_I,                           KC_D,             KC_H,    KC_T,  KC_N,  KC_S,   KC_MINS, \
@@ -139,7 +137,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |      |      |      |      |      |      |      |      |ADJUST| Back | Next | Vol- | Vol+ | Play |
    * `-------------------------------------------------------------------------------------------------'
    */
-  [_LOWER] = KEYMAP( \
+  [_LOWER] = LAYOUT( \
       KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                     KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11, \
       KC_GRV,  KC_1 ,   KC_2 ,   KC_3 ,   KC_4 ,   KC_5 ,                     KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_F12, \
       _______, KC_WBAK, _______, _______, KC_WFWD, _______,                   KC_BSPC, KC_LEFT, KC_UP,   KC_DOWN, KC_RGHT, KC_MINS, \
@@ -160,7 +158,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |      |      |      |      |      |ADJUST|      |      |      | Back | Next | Vol- | Vol+ | Play |
    * `-------------------------------------------------------------------------------------------------'
    */
-  [_RAISE] = KEYMAP( \
+  [_RAISE] = LAYOUT( \
       KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                     KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11, \
       KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_F12, \
       _______, KC_WBAK, _______, _______, KC_WFWD, _______,                   _______, KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_UNDS, \
@@ -182,7 +180,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |      |      |      |      |      |      |      |      |      |      | MODE | HUE- | SAT- | VAL- |
    * `-------------------------------------------------------------------------------------------------'
    */
-  [_ADJUST] =  KEYMAP( \
+  [_ADJUST] =  LAYOUT( \
       KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                     KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11, \
       RESET  , KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                     KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11, \
       KC_CAPS, KC_INS , _______, AU_ON,   AU_OFF,  AG_NORM,                   AG_SWAP, QWERTY,  TENKEY , DVORAK,  _______, KC_F12, \
@@ -203,7 +201,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |      |      |      |      |      |      |      |  SP  |Enter |   0  |   .  | Enter|DVORAK|ADJUST|
    * `-------------------------------------------------------------------------------------------------'
    */
-   [_TENKEY] =  KEYMAP( \
+   [_TENKEY] =  LAYOUT( \
       KC_ESC,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                    KC_NLCK, KC_TAB,  KC_PSLS, KC_PAST, KC_PEQL, KC_BSPC, \
       _______, XXXXXXX, KC_UP  , XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, KC_P7,   KC_P8,   KC_P9,   KC_PMNS, KC_DEL, \
       KC_LCTL, KC_LEFT, KC_DOWN, KC_RGHT, XXXXXXX, XXXXXXX,                   XXXXXXX, KC_P4,   KC_P5,   KC_P6,   KC_PPLS, KC_ENT, \
