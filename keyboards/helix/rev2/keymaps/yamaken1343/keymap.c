@@ -41,10 +41,10 @@ extern uint8_t is_master;
 enum layer_number {
     _QWERTY = 0,
     _DVORAK,
+    _TENKEY,
     _LOWER,
     _RAISE,
-    _ADJUST,
-    _TENKEY
+    _ADJUST
 };
 
 enum custom_keycodes {

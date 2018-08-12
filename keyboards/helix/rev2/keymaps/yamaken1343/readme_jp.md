@@ -54,11 +54,11 @@
 
 |Priority|number|name|description|
 | ---- | ---- | --- | --- |
-|high|6|Tenkey|テンキーパッド|
-||5|Adjust|機能キー|
-||4|Raise|記号|
-||3|Lower|ナビゲーションキー|
-||2|Dvorak|Dvorak 配列|
+|high|6|Adjust|機能キー|
+| |5|Raise|記号|
+| |4|Lower|ナビゲーションキー|
+| |3|Tenkey|テンキーパッド|
+| |2|Dvorak|Dvorak 配列|
 |low|0|Qwerty|QWERTY 配列(base)|
 
 ### Lower

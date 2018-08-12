@@ -52,11 +52,11 @@
 
 |Priority|number|name|description|
 | ---- | ---- | --- | --- |
-|high|6|Tenkey|Ten key pad layout|
-||5|Adjust|Functions|
-||4|Raise|Numeric charactors|
-||3|Lower|Navigation keys|
-||2|Dvorak|Dvorak leyout|
+|high|6|Adjust|Functions|
+| |5|Raise|Numeric charactors|
+| |4|Lower|Navigation keys|
+| |3|Tenkey|Ten key pad layout|
+| |2|Dvorak|Dvorak leyout|
 |low|0|Qwerty|QWERTY leyout(base)|
 
 ### Lower
