@@ -90,16 +90,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
    * | Shift|   Z  |   X  |   C  |   V  |   B  |   [  |   ]  |   N  |   M  |   ,  |   .  |   /  |Enter |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |Adjust| Esc  | EISU | Alt  | GUI  |Lower |      |      |Raise | GUI  | Alt  |TENKEY|DVORAK|ADJUST|
+   * |Adjust| Esc  | EISU | Alt  | GUI  |Lower |      |      |Raise | GUI  | KANA |TENKEY|DVORAK| Enter|
    * |      |      |      |      |      |Space |Shift |Shift |Enter |      |      |      |      |      |
    * `-------------------------------------------------------------------------------------------------'
    */
   [_QWERTY] = LAYOUT( \
       KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                           KC_6,             KC_7,    KC_8,    KC_9,   KC_0,    KC_DEL, \
       KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                           KC_Y,             KC_U,    KC_I,    KC_O,   KC_P,    KC_BSPC, \
-      KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                           KC_H,             KC_J,    KC_K,    KC_L,   KC_SCLN, KC_QUOT, \
+      KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,LT(_TENKEY,KC_I) ,                  KC_H,             KC_J,    KC_K,    KC_L,   KC_SCLN, KC_QUOT, \
       KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,         KC_LBRC, KC_RBRC, KC_N,             KC_M,    KC_COMM, KC_DOT, KC_SLSH, KC_ENT , \
-      ADJUST,  KC_ESC,  EISU, KC_LALT, KC_LGUI,LT(_LOWER,KC_SPC),KC_LSFT, KC_RSFT, LT(_RAISE,KC_ENT),KC_RGUI, KC_RALT, TENKEY, DVORAK, ADJUST \
+      ADJUST,  KC_ESC,  EISU, KC_LALT, KC_LGUI,LT(_LOWER,KC_SPC),KC_LSFT, KC_RSFT, LT(_RAISE,KC_ENT),KC_RGUI, KANA, TENKEY, DVORAK, KC_ENT \
       ),
 
   /* Dvorak
@@ -112,16 +112,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
    * | Shift|   ;  |   Q  |   J  |   K  |   X  |   [  |   ]  |   B  |   M  |   W  |   V  |   Z  |   \  |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |Adjust| Esc  | EISU | Alt  | GUI  |Lower |      |      |Raise | GUI  | KANA |TENKEY|DVORAK|ADJUST|
+   * |Adjust| Esc  | EISU | Alt  | GUI  |Lower |      |      |Raise | GUI  | KANA |TENKEY|DVORAK| Enter|
    * |      |      |      |      |      |Space |Shift |Shift |Enter |      |      |      |      |      |
    * `-------------------------------------------------------------------------------------------------'
    */
   [_DVORAK] = LAYOUT( \
       KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                           KC_6,             KC_7,    KC_8,  KC_9,  KC_0,   KC_EQL, \
       KC_TAB,  KC_QUOT, KC_COMM, KC_DOT,  KC_P,    KC_Y,                           KC_F,             KC_G,    KC_C,  KC_R,  KC_L,   KC_SLSH, \
-      KC_LCTL, KC_A,    KC_O,    KC_E,    KC_U,    KC_I,                           KC_D,             KC_H,    KC_T,  KC_N,  KC_S,   KC_MINS, \
+      KC_LCTL, KC_A,    KC_O,    KC_E,    KC_U,LT(_TENKEY,KC_I) ,                  KC_D,             KC_H,    KC_T,  KC_N,  KC_S,   KC_MINS, \
       KC_LSFT, KC_SCLN, KC_Q,    KC_J,    KC_K,    KC_X,         KC_LBRC, KC_RBRC, KC_B,             KC_M,    KC_W,  KC_V,  KC_Z,   KC_BSLS , \
-      ADJUST,  KC_ESC,  EISU, KC_LALT, KC_LGUI,LT(_LOWER,KC_SPC),KC_LSFT, KC_RSFT, LT(_RAISE,KC_ENT),KC_RGUI, KANA,  TENKEY, DVORAK, ADJUST \
+      ADJUST,  KC_ESC,  EISU, KC_LALT, KC_LGUI,LT(_LOWER,KC_SPC),KC_LSFT, KC_RSFT, LT(_RAISE,KC_ENT),KC_RGUI, KANA,  TENKEY, DVORAK, KC_ENT \
       ),
 
   /* Lower
@@ -134,7 +134,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
    * |      | Undo | Cut  | Copy |Paste |      |  (   |   )  | Del  | Home |PageUp|PageDn| End  |      |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |      |      |      |      |      |      |      |      |ADJUST| Back | Next | Vol- | Vol+ | Play |
+   * |      |      |      |      |      |      |      |      |ADJUST| Back | Vol+ | Vol- | Next | Play |
    * `-------------------------------------------------------------------------------------------------'
    */
   [_LOWER] = LAYOUT( \
@@ -142,7 +142,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_GRV,  KC_1 ,   KC_2 ,   KC_3 ,   KC_4 ,   KC_5 ,                     KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_F12, \
       _______, KC_WBAK, _______, _______, KC_WFWD, _______,                   KC_BSPC, KC_LEFT, KC_UP,   KC_DOWN, KC_RGHT, KC_MINS, \
       _______, UNDO   , CUT    , COPY   , PSTE   , _______, KC_LPRN, KC_RPRN, KC_DEL,  KC_HOME, KC_PGUP, KC_PGDN, KC_END,  _______, \
-      _______, _______, _______, _______, _______, _______, _______, _______, ADJUST, KC_MPRV, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY \
+      _______, _______, _______, _______, _______, _______, _______, _______, ADJUST, KC_MPRV, KC_VOLU, KC_VOLD, KC_MNXT, KC_MPLY \
       ),
 
   /* Raise
@@ -155,7 +155,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
    * |      | Undo | Cut  | Copy |Paste |      |      |      |      |   _  |   +  |   {  |   }  |      |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |      |      |      |      |      |ADJUST|      |      |      | Back | Next | Vol- | Vol+ | Play |
+   * |      |      |      |      |      |ADJUST|      |      |      | Back | Vol+ | Vol- | Next | Play |
    * `-------------------------------------------------------------------------------------------------'
    */
   [_RAISE] = LAYOUT( \
@@ -163,7 +163,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_F12, \
       _______, KC_WBAK, _______, _______, KC_WFWD, _______,                   _______, KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_UNDS, \
       _______, UNDO   , CUT    , COPY   , PSTE   , _______, _______, _______, _______, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, _______, \
-      _______, _______, _______, _______, _______, ADJUST , _______, _______, _______, KC_MPRV, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY \
+      _______, _______, _______, _______, _______, ADJUST , _______, _______, _______, KC_MPRV, KC_VOLU, KC_VOLD, KC_MNXT, KC_MPLY \
       ),
 
   /* Adjust (Lower + Raise)
@@ -190,23 +190,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         
    /* Ten key pad
    * ,-----------------------------------------.             ,-----------------------------------------.
-   * |  ESC |      |      |      |      |      |             |NUMLK | Tab  |   /  |   *  |   =  | Bksp |
+   * |  ESC |      |      |      |      |      |             |NUMLK | Tab  |   /  |   *  |      | Bksp |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |      |      |  Up  |      |      |      |             |      |   7  |   8  |   9  |   -  | Del  |
+   * |      |      |  Up  |      |      |      |             |      |   7  |   8  |   9  |   =  | Del  |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * | Ctrl | Left | Down | Right|      |      |             |      |   4  |   5  |   6  |   +  |Enter |
+   * | Ctrl | Left | Down | Right|      |      |             |      |   4  |   5  |   6  |   -  |Enter |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |Shift | Undo | Cut  | Copy |Paste |      |      |      |      |   1  |   2  |   3  |   ,  |Shift |
+   * |Shift | Undo | Cut  | Copy |Paste |      |      |      |      |   1  |   2  |   3  |   +  |Shift |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |      |      |      |      |      |      |      |  SP  |Enter |   0  |   .  | Enter|DVORAK|ADJUST|
+   * |      |      |      |      |      |      |      |  SP  |Enter |   0  |   .  |   ,  |DVORAK|ADJUST|
    * `-------------------------------------------------------------------------------------------------'
    */
    [_TENKEY] =  LAYOUT( \
-      KC_ESC,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                    KC_NLCK, KC_TAB,  KC_PSLS, KC_PAST, KC_PEQL, KC_BSPC, \
-      _______, XXXXXXX, KC_UP  , XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, KC_P7,   KC_P8,   KC_P9,   KC_PMNS, KC_DEL, \
-      KC_LCTL, KC_LEFT, KC_DOWN, KC_RGHT, XXXXXXX, XXXXXXX,                   XXXXXXX, KC_P4,   KC_P5,   KC_P6,   KC_PPLS, KC_ENT, \
-      KC_LSFT, KC_UNDO, KC_CUT , KC_COPY, KC_PSTE, XXXXXXX, _______, _______, XXXXXXX, KC_P1,   KC_P2,   KC_P3,   KC_PCMM, KC_RSFT, \
-      _______, _______, _______, _______, _______, _______, _______, KC_SPC,  KC_ENT,  KC_P0,   KC_PDOT, KC_PENT, DVORAK,  ADJUST \
+      KC_ESC,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   KC_NLCK, KC_TAB,  KC_PSLS, KC_PAST, XXXXXXX, KC_BSPC, \
+      _______, XXXXXXX, KC_UP  , XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, KC_P7,   KC_P8,   KC_P9,   KC_PEQL, KC_DEL, \
+      KC_LCTL, KC_LEFT, KC_DOWN, KC_RGHT, XXXXXXX, XXXXXXX,                   _______, KC_P4,   KC_P5,   KC_P6,   KC_PMNS, KC_ENT, \
+      KC_LSFT, KC_UNDO, KC_CUT , KC_COPY, KC_PSTE, XXXXXXX, _______, _______, _______, KC_P1,   KC_P2,   KC_P3,   KC_PPLS, KC_RSFT, \
+      _______, _______, _______, _______, _______, _______, _______, KC_SPC,  KC_ENT,  KC_P0,   KC_PDOT, KC_PCMM, DVORAK,  ADJUST \
       )
 };
 
@@ -478,6 +478,7 @@ void matrix_update(struct CharacterMatrix *dest,
 #define L_LOWER (1<<_LOWER)
 #define L_RAISE (1<<_RAISE)
 #define L_ADJUST (1<<_ADJUST)
+#define L_TENKEY (1<<_TENKEY)
 #define L_ADJUST_TRI (L_ADJUST|L_RAISE|L_LOWER)
 #define L_ADJUST_L (L_ADJUST|L_LOWER)
 #define L_ADJUST_R (L_ADJUST|L_RAISE)
@@ -531,6 +532,9 @@ void render_status(struct CharacterMatrix *matrix) {
         case L_LOWER:
            matrix_write_P(matrix, PSTR("Lower"));
            break;
+        case L_TENKEY:
+            matrix_write_P(matrix, PSTR("Tenkey"));
+            break;
         case L_ADJUST:
         case L_ADJUST_TRI:
         case L_ADJUST_L:
