@@ -373,7 +373,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         } else {
           TOG_STATUS = !TOG_STATUS;
           #ifdef RGBLIGHT_ENABLE
-            //rgblight_mode(16);
+            //rgblight_mode(RGBLIGHT_MODE_SNAKE + 1);
           #endif
         }
         layer_on(_LOWER);
@@ -396,7 +396,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         } else {
           TOG_STATUS = !TOG_STATUS;
           #ifdef RGBLIGHT_ENABLE
-            //rgblight_mode(15);
+            //rgblight_mode(RGBLIGHT_MODE_SNAKE);
           #endif
         }
         layer_on(_RAISE);
@@ -510,7 +510,14 @@ void music_scale_user(void)
 //SSD1306 OLED update loop, make sure to add #define SSD1306OLED in config.h
 #ifdef SSD1306OLED
 
+// hook point for 'led_test' keymap
+//   'default' keymap's led_test_init() is empty function, do nothing
+//   'led_test' keymap's led_test_init() force rgblight_mode_noeeprom(RGBLIGHT_MODE_RGB_TEST);
+__attribute__ ((weak))
+void led_test_init(void) {}
+
 void matrix_scan_user(void) {
+     led_test_init();
      iota_gfx_task();  // this is what updates the display continuously
 }
 
