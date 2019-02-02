@@ -185,7 +185,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       RESET  , KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                     KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11, \
       KC_CAPS, KC_INS , _______, AU_ON,   AU_OFF,  AG_NORM,                   AG_SWAP, QWERTY,  TENKEY , DVORAK,  _______, KC_F12, \
       KC_PSCR, _______, _______, _______, _______, CC_NORM, _______, _______, CC_SWAP, RGBRST , RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, \
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RGB_SMOD,RGB_HUD, RGB_SAD, RGB_VAD \
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD \
       ),
         
    /* Ten key pad
