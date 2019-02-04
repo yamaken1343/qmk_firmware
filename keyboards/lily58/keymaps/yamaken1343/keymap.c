@@ -20,7 +20,7 @@ extern uint8_t is_master;
 
 #define _QWERTY 0
 #define _DVORAK 1
-#define _TENKY 2
+#define _TENKEY 2
 #define _LOWER 3
 #define _RAISE 4
 #define _ADJUST 16
@@ -34,9 +34,9 @@ enum custom_keycodes {
   LOWER,
   RAISE,
   ADJUST,
-  TENKY,
+  TENKEY,
   CUT,
-  COPY
+  COPY,
   PSTE,
   UNDO
 };
@@ -261,8 +261,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       break;
       case DVORAK:
           if(record->event.pressed){
-              persistent_default_layer_set(1UL << _DVORAK);
-              default_layer_current_mode = _DVORAK;
+            set_single_persistent_default_layer(_DVORAK);
           }
           return false;
           break;
@@ -297,8 +296,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
       case TENKEY:
           if(record->event.pressed){
-              persistent_default_layer_set(1UL << _TENKEY);
-              default_layer_current_mode = _TENKEY;
+              set_single_persistent_default_layer(_TENKEY);
               return false;
           }
           break;
